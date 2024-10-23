@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Playground</title>
+</head>
+<body>
+    <script>
+        let userScore = 0;
+        let cpuScore = 0;
+        
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function GetComputerChoice() {
+            const random = getRandomInt(3);
+            let choice;
+            switch (random) {
+                case 0:
+                    choice = 'Rock';
+                    break;
+                case 1:
+                    choice = 'Paper';
+                    break;
+                case 2:
+                    choice = 'Scissors';
+                    break;
+                default:
+                    choice = null;
+            }
+            return choice;
+        }
+
+        function getUserChoice() {
+            let userChoice;
+            let userInput = prompt("Rock, Paper, Scissors?", "Rock")
+                
+            switch (userInput) {
+                case "Rock":
+                case "rock":
+                case "r":
+                    userChoice = "Rock";
+                    break;
+                case "Paper":
+                case "paper":
+                case "p":
+                    userChoice = "Paper";
+                    break;
+                case "Scissors":
+                case "scissors":
+                case "s":
+                    userChoice = "Scissors";
+                    break;
+                default:
+                    userChoice = null;
+                    break;
+            }
+            return userChoice;
+        }
+
+        function playRound() {
+            let  cpuChoice = GetComputerChoice();
+            let userChoice = getUserChoice();
+
+            if (userChoice === cpuChoice) {
+                console.log("Draw! " + userChoice + " vs " + cpuChoice);
+                return;
+            }
+
+            switch (userChoice + cpuChoice) {
+                case "RockScissors":
+                    console.log("You Win! Rock smashes Scissors.");
+                    break;
+                case "RockPaper":
+                    console.log("You lose! Paper beats Rock.");
+                    break;
+                case "PaperRock":
+                    console.log("You win! Paper beats Rock.");
+                    break;
+                case "PaperScissors":
+                    console.log("You lose! Scissors cut Paper.");
+                    break;
+                case "ScissorsPaper":
+                    console.log("You win! Scissors cut Paper.");
+                    break;
+                case "ScissorsRock":
+                    console.log("You lose! Rock smashes Scissors.");
+                    break;
+                default:
+                    console.log(`Oops! Something went wrong. ${userChoice+cpuChoice}`);
+                    
+            }
+        }
+
+       playRound();
+
+
+    </script>
+</body>
+</html>
