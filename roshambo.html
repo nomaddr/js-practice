@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Playground</title>
 </head>
+
 <body>
     <script>
         let userScore = 0;
         let cpuScore = 0;
-        
+
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
         }
@@ -36,7 +38,7 @@
         function getUserChoice() {
             let userChoice;
             let userInput = prompt("Rock, Paper, Scissors?", "Rock")
-                
+
             switch (userInput) {
                 case "Rock":
                 case "rock":
@@ -61,7 +63,7 @@
         }
 
         function playRound() {
-            let  cpuChoice = GetComputerChoice();
+            let cpuChoice = GetComputerChoice();
             let userChoice = getUserChoice();
 
             if (userChoice === cpuChoice) {
@@ -72,31 +74,55 @@
             switch (userChoice + cpuChoice) {
                 case "RockScissors":
                     console.log("You Win! Rock smashes Scissors.");
-                    break;
-                case "RockPaper":
-                    console.log("You lose! Paper beats Rock.");
+                    userScore++;
                     break;
                 case "PaperRock":
                     console.log("You win! Paper beats Rock.");
-                    break;
-                case "PaperScissors":
-                    console.log("You lose! Scissors cut Paper.");
+                    userScore++;
                     break;
                 case "ScissorsPaper":
                     console.log("You win! Scissors cut Paper.");
+                    userScore++;
+                    break;
+                case "RockPaper":
+                    console.log("You lose! Paper beats Rock.");
+                    cpuScore++;
+                    break;
+                case "PaperScissors":
+                    console.log("You lose! Scissors cut Paper.");
+                    cpuScore++;
                     break;
                 case "ScissorsRock":
                     console.log("You lose! Rock smashes Scissors.");
+                    cpuScore++;
                     break;
                 default:
-                    console.log(`Oops! Something went wrong. ${userChoice+cpuChoice}`);
-                    
+                    console.log(`Oops! Something went wrong. ${userChoice + cpuChoice}`);
             }
         }
 
-       playRound();
+        function playGame() {
+            let round = 5;
 
+            while (round > 0) {
+                playRound();
+                round--;
+            }
+            if (userScore > cpuScore) {
+                console.log(`Congratulations! You win the Game! Your Score: ${userScore} vs Cpu: ${cpuScore}`);
+            } 
+            else if (userScore < cpuScore) {
+                console.log(`You lose the Game. Better luck next time! Your Score: ${userScore} vs Cpu: ${cpuScore}`)
+            }
+            else {
+                console.log(`Draw! Play Again! Your Score: ${userScore} vs Cpu: ${cpuScore}`)
+            }
+        }
+
+
+        playGame();
 
     </script>
 </body>
+
 </html>
